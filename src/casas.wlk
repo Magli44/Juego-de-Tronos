@@ -21,6 +21,10 @@ class Familia{
 	method miembrosDeLaCasa(){
 		return miembros
 	}
+	
+	method derrocharFortuna(unPorcentaje){
+		patrimonio -= (patrimonio*unPorcentaje)
+	}
 }
 
 

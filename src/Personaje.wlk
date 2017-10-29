@@ -1,14 +1,20 @@
+import casas.*
+import acompaniantes.*
+import personalidades.*
+
 class Personaje{
 	var casa
 	var conyuges = #{}
 	var acompaniantes = #{}
 	var estado
+	var personalidad
 	
-	constructor(unaCasa, unosConyuges, unosAcompaniantes, unEstado){
+	constructor(unaCasa, unosConyuges, unosAcompaniantes, unEstado, unaPersonalidad){
 		casa = unaCasa
 		conyuges = unosConyuges
 		acompaniantes = unosAcompaniantes
 		estado = unEstado
+		personalidad = unaPersonalidad
 	}
 	
 	method estaSolo(){
@@ -66,4 +72,19 @@ class Personaje{
 		return self.aliados().any({ aliado => aliado.esPeligroso()})
 	}
 	
+	method esAmigoDelPersonajeObjetivo(unPersonajeObjetivo){
+		return unPersonajeObjetivo.aliados().contains(self)
+	}
+	
+	method morir(){
+		estado = 'muerto'
+	}
+	
+	method derrocharFortuna(unPorcentaje){
+		casa.derrocharFortunaCasa(unPorcentaje)
+	}
+	
+	method ejecutarAccionConspirativa(unPersonajeObjetivo){
+		personalidad.accionConspirativa(unPersonajeObjetivo)
+	}
 }
